@@ -1,0 +1,12 @@
+com\hmisael\logica\Usuario.class
+com\hmisael\persistencia\exceptions\NonexistentEntityException.class
+com\hmisael\igu\Principal$1.class
+com\hmisael\igu\Principal$2.class
+com\hmisael\persistencia\exceptions\IllegalOrphanException.class
+com\hmisael\persistencia\UsuarioJpaController.class
+com\hmisael\logica\Usuario_.class
+com\hmisael\persistencia\exceptions\PreexistingEntityException.class
+com\hmisael\persistencia\ControladoraPersistencia.class
+com\hmisael\igu\Principal.class
+com\hmisael\login\Login.class
+com\hmisael\logica\Controladora.class
