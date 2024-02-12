@@ -6,41 +6,42 @@
 package com.hmisael.logica;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 /**
  *
  * @author Hernán Misael
  */
 @Entity
-public class Usuario implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    private String nombre;
-    private String contrasenia;
+public class Rol implements Serializable {
 
-    @ManyToOne
-    private Rol unRol;
-    
-    public Usuario() {
+@Id
+@GeneratedValue(strategy=GenerationType.AUTO)
+private int id;
+private String nombre;
+private String descripcion;
+
+@OneToMany
+private List<Usuario> listaUsuarios;
+
+    public Rol() {
     }
 
-    public Usuario(int id, String nombre, String contrasenia, Rol unRol) {
+    public Rol(int id, String nombre, String descripcion, List<Usuario> listaUsuarios) {
         this.id = id;
         this.nombre = nombre;
-        this.contrasenia = contrasenia;
-        this.unRol = unRol;
+        this.descripcion = descripcion;
+        this.listaUsuarios = listaUsuarios;
     }
 
-    
-    
+   
+
+   
     public int getId() {
         return id;
     }
@@ -57,22 +58,26 @@ public class Usuario implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getContrasenia() {
-        return contrasenia;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setContrasenia(String contrasenia) {
-        this.contrasenia = contrasenia;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
-    public Rol getUnRol() {
-        return unRol;
+    public List<Usuario> getListaUsuarios() {
+        return listaUsuarios;
     }
 
-    public void setUnRol(Rol unRol) {
-        this.unRol = unRol;
+    public void setListaUsuarios(List<Usuario> listaUsuarios) {
+        this.listaUsuarios = listaUsuarios;
     }
+
+
     
+
+
+
     
-            
 }
