@@ -1,12 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.hmisael.persistencia;
 
+import com.hmisael.logica.Rol;
 import com.hmisael.logica.Usuario;
+import com.hmisael.persistencia.exceptions.NonexistentEntityException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,5 +17,33 @@ public class ControladoraPersistencia {
     
     public List<Usuario> traerUsuarios() {
         return usuJpa.findUsuarioEntities();
+    }
+
+    public List<Rol> traerRoles() {
+        return rolJpa.findRolEntities();
+    }
+
+    public void crearUsuario(Usuario usuario) {
+        usuJpa.create(usuario);
+    }
+
+    public void borrarUsuario(int idUsuario) {
+        try {
+            usuJpa.destroy(idUsuario);
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public Usuario traerUsuario(int idUsuario) {
+        return usuJpa.findUsuario(idUsuario);
+    }
+
+    public void modificarUsuario(Usuario usuarioCargado) {
+        try {
+            usuJpa.edit(usuarioCargado);
+        } catch (Exception ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

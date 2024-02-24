@@ -21,12 +21,12 @@ import javax.persistence.OneToMany;
 public class Rol implements Serializable {
 
 @Id
-@GeneratedValue(strategy=GenerationType.AUTO)
+//@GeneratedValue(strategy=GenerationType.AUTO)
 private int id;
 private String nombre;
 private String descripcion;
 
-@OneToMany
+@OneToMany(mappedBy="unRol")
 private List<Usuario> listaUsuarios;
 
     public Rol() {

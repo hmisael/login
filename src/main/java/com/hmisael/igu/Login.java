@@ -6,18 +6,19 @@
 package com.hmisael.igu;
 
 import com.hmisael.logica.Controladora;
+import com.hmisael.logica.Usuario;
 
 /**
  *
  * @author Hernán Misael
  */
-public class Principal extends javax.swing.JFrame {
+public class Login extends javax.swing.JFrame {
 Controladora control;
 
     /**
      * Creates new form Principal
      */
-    public Principal() {
+    public Login() {
         initComponents();
         control = new Controladora();
     }
@@ -109,7 +110,7 @@ Controladora control;
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(51, 51, 51)
+                .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -127,7 +128,7 @@ Controladora control;
                     .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -151,12 +152,32 @@ Controladora control;
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        String usuario = txtUsuario.getText();
-        String contrasenia = txtContrasenia.getText();
-        
-        String mensaje = control.validarUsuario(usuario, contrasenia);
+        String usuarioTxt = txtUsuario.getText();
+        String contraseniaTxt = txtContrasenia.getText();
+     
+        Usuario usuario = control.validarUsuario(usuarioTxt, contraseniaTxt);
 
-        txtMensaje.setText(mensaje);
+        if (usuario != null){
+            String rol = usuario.getUnRol().getNombre();
+            if (rol.equals("admin")){
+                MainAdmin mainAdmin = new MainAdmin(control, usuario);
+                mainAdmin.setVisible(true);
+                mainAdmin.setLocationRelativeTo(null);
+                dispose();
+            }
+            if (rol.equals("user")){
+                MainUser mainUser = new MainUser(control, usuario);
+                mainUser.setVisible(true);
+                mainUser.setLocationRelativeTo(null);
+                dispose();
+            }
+        }
+        else{
+            txtMensaje.setText("Usuario o contraseña incorrecto");
+        }
+        
+        
+        txtMensaje.setText("Usuario o contraseña incorrecta");
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     

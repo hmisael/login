@@ -5,15 +5,13 @@
  */
 package com.hmisael.login;
 
-import com.hmisael.igu.Principal;
-
 /**
  *
  * @author Hernán Misael
  */
 public class Login {
     public static void main(String[] args) {
-        Principal principal = new Principal();
+        com.hmisael.igu.Login principal = new com.hmisael.igu.Login();
         principal.setVisible(true);
         principal.setLocationRelativeTo(null);
     }
